@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gráfico de Intenções de Voto</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Evolução das Intenções de Voto</h2>
+    <canvas id="votoChart"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('votoChart').getContext('2d');
+    const votoChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ["1 de maio", "1 de junho", "1 de julho", "1 de agosto", "1 de setembro", "1 de outubro"],
+        datasets: [
+          {
+            label: 'Candidato A',
+            data: [39, 37, 40, 42, 47, 51],
+            borderColor: '#1f77b4',
+            backgroundColor: 'rgba(31, 119, 180, 0.1)',
+            borderWidth: 2,
+            pointRadius: 5,
+            fill: true,
+            tension: 0.4
+          },
+          {
+            label: 'Candidato B',
+            data: [52, 53, 50, 47, 42, 39],
+            borderColor: '#ff7f0e',
+            backgroundColor: 'rgba(255, 127, 14, 0.1)',
+            borderDash: [5, 5],
+            borderWidth: 2,
+            pointRadius: 5,
+            fill: true,
+            tension: 0.4
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 60,
+            title: {
+              display: true,
+              text: 'Porcentagem'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Data'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
 
